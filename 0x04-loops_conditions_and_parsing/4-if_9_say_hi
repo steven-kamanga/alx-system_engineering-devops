@@ -7,8 +7,7 @@ do
     if [ $i -eq 9 ]
     then
         echo "Hi"
-    else
-        echo "Best School"
     fi
-    i=$((i+1))
+    echo "Best School"
+    (( i++ ))
 done

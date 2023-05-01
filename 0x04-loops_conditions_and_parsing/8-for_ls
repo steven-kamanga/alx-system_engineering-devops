@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Display the content of the current directory
+# Use for loop
+# Do not display hidden files
+# Display in a list format
+
+for file in *
+do
+    echo "$file"
+done

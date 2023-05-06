@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # This script Write a Bash script displays To infinity and beyond indefinitely. 
-
-while true
+count = 1
+while [ $count -gt 0 ]
 do
     echo "To infinity and beyond"
+    sleep 2
+    ((count++))
 done

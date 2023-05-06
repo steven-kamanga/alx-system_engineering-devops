@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # This script Write a Bash script displays To infinity and beyond indefinitely. 
 
 while true

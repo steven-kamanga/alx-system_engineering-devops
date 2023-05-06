@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# This script displays all processes for all users, including those which might not have a TTY
+# Displays in user-oriented format
+
+ps -aux --forest

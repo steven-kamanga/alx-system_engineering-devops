@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# This script is displaying "Best School" 10 times using while loop, but for the 9th iteration display Hi
-
+# This script is displaying "Best School" 10 times using while loop, but for the 9th iteration display Hi 😂😂😂
 i=0
 while [ $i -lt 10 ]
 do

@@ -27,4 +27,34 @@
 []: # * After pushing your answer file to Github, insert the Github file link into the URL box
 []: # * You will have to explain what is happening to the interviewer:
 []: # * Create a new git repository for each task (i.e. 0x01-answer, 0x02-answer, etc.)
-[]: # * You
+[]: # * You need to have a README.md at the root of the project directory
+[]: # * Push the answer files to Github, in your own repository
+[]: # * File: `0-simple_web_stack`
+[]: # * File: `1-distributed_web_infrastructure`
+[]: # * File: `2-secured_and_monitored_web_infrastructure`
+[]: # * File: `3-scale_up`
+[]: # * File: `4-secured_and_monitored_web_infrastructure`
+[]: # * File: `5-secured_and_monitored_web_infrastructure`
+[]: # * File: `6-secured_and_monitored_web_infrastructure`
+[]: # * File: `7-secured_and_monitored_web_infrastructure`
+[]: # * File: `8-secured_and_monitored_web_infrastructure`
+[]: # * File: `9-secured_and_monitored_web_infrastructure`
+[]: # * File: `10-secured_and_monitored_web_infrastructure`
+[]: # * File: `11-secured_and_monitored_web_infrastructure`
+[]: # * File: `12-secured_and_monitored_web_infrastructure`
+[]: # * File: `13-secured_and_monitored_web_infrastructure`
+[]: # * File: `14-secured_and_monitored_web_infrastructure`
+[]: # * File: `15-secured_and_monitored_web_infrastructure`
+[]: # * File: `16-secured_and_monitored_web_infrastructure`
+[]: # * File: `17-secured_and_monitored_web_infrastructure`
+[]: # * File: `18-secured_and_monitored_web_infrastructure`
+[]: # * File: `19-secured_and_monitored_web_infrastructure`
+[]: # * File: `20-secured_and_monitored_web_infrastructure`
+[]: # * File: `21-secured_and_monitored_web_infrastructure`
+[]: # * File: `22-secured_and_monitored_web_infrastructure`
+[]: # * File: `23-secured_and_monitored_web_infrastructure`
+[]: # * File: `24-secured_and_monitored_web_infrastructure`
+[]: # * File: `25-secured_and_monitored_web_infrastructure`
+[]: # * File: `26-secured_and_monitored_web_infrastructure`
+[]: # * File: `27-secured_and_monitored_web_infrastructure`
+[]: # * File: `28

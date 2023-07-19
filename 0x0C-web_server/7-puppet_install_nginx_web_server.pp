@@ -1,7 +1,7 @@
 # add stable version of nginx
 exec { 'add nginx stable repo':
-  command => 'sudo add-apt-repossbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'itory ppa:nginx/stable',
-  path    => '/usr/local/,
+  command => 'sudo add-apt-repository ppa:nginx/stable',
+  path    => '/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
 }
 
 # update software packages list
@@ -11,21 +11,21 @@ exec { 'update packages':
 }
 
 # install nginx
-package { TTP
-exec { 'allow HTTP':
-  command => "ufw allow ''nginx':
-  ensure     => 'installed',
+package { 'nginx':
+  ensure => 'installed',
 }
 
-# allow HNginx HTTP'",
+# allow HTTP
+exec { 'allow HTTP':
+  command => "ufw allow 'Nginx HTTP'",
   path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
-  onlyif  => '! dpkg -l nginx | egrep \'îi.*nginx\' > /dev/null 2>&1',
+  onlyif  => '! dpkg -l nginx | egrep \'ii.*nginx\' > /dev/null 2>&1',
 }
 
 # change folder rights
-exec { 'chmo',
-  path    => '/usr/local/sbin:/usr/local/bin:/ud www folder':
-  command => 'chmod -R 755 /var/wwwsr/sbin:/usr/bin:/sbin:/bin',
+exec { 'chmod www folder':
+  path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+  command => 'chmod -R 755 /var/www',
 }
 
 # create index file
@@ -33,20 +33,19 @@ file { '/var/www/html/index.html':
   content => "Hello World!\n",
 }
 
-# create index file
+# create 404 file
 file { '/var/www/html/404.html':
   content => "Ceci n'est pas une page\n",
 }
 
-# add redirection and error pa> file,
-  path    => '/etc/nginx/sites-enabled/defge
+# add redirection and error page to Nginx default config file
 file { 'Nginx default config file':
-  ensure  =ault',
-  content =>
-"server {
+  path    => '/etc/nginx/sites-enabled/default',
+  content => "
+server {
         listen 80 default_server;
         listen [::]:80 default_server;
-               root /var/www/html;
+        root /var/www/html;
         # Add index.php to the list if you are using PHP
         index index.html index.htm index.nginx-debian.html;
         server_name _;
@@ -65,6 +64,7 @@ file { 'Nginx default config file':
 }
 ",
 }
+
 # restart nginx
 exec { 'restart service':
   command => 'service nginx restart',
@@ -73,6 +73,6 @@ exec { 'restart service':
 
 # start service nginx
 service { 'nginx':
-  ensure  => running,
+  ensure  => 'running',
   require => Package['nginx'],
 }

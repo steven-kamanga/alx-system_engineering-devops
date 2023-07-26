@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Script to configure a fresh machine for load balancing
 
 # Install Nginx
 sudo apt-get -y update

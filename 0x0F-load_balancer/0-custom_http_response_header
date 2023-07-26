@@ -1,34 +1,51 @@
 #!/usr/bin/env bash
-# configure web-02 to be identical to web-01
-# The name of the custom HTTP header must be X-Served-By
-# The value of the custom HTTP header must be the hostname of the server Nginx is running on
-#sudo sed -i 's/server_name _;.*/server_name _;\n\tadd_header X-Served-By \$hostname;/' /etc/nginx/sites-enabled/default 
+
+# Install Nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
+
+# Allow Nginx through the firewall
 sudo ufw allow 'Nginx HTTP'
+
+# Create directories and set permissions
 sudo mkdir -p /var/www/html /var/www/error
 sudo chmod -R 755 /var/www
+
+# Create the index and 404 error pages
 echo 'Hello World!' > /var/www/html/index.html
 echo "Ceci n'est pas une page" > /var/www/html/404.html
-server_config=\
-"server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
-	root /var/www/html;
-	index index.html index.htm index.nginx-debian.html;
-	server_name _;
-	add_header X-Served-By \$hostname;
-	location / {
-		try_files \$uri \$uri/ =404;
-	}
-	if (\$request_filename ~ redirect_me){
-		rewrite ^ https://youtube.com permanent;
-	}
-	error_page 404 /404.html;
-	location = /404.html {
-		internal;
-	}
+
+# Create a new Nginx configuration file
+server_config="
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    root /var/www/html;
+    index index.html index.htm index.nginx-debian.html;
+    server_name _;
+    add_header X-Served-By \$hostname;
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+    if (\$request_filename ~ redirect_me){
+        rewrite ^ https://youtube.com permanent;
+    }
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
 }"
 
-echo "$server_config" > /etc/nginx/sites-enabled/default
-sudo service nginx restart
+echo "$server_config" | sudo tee /etc/nginx/sites-available/custom_response_header > /dev/null
+
+# Enable the new site
+sudo ln -s /etc/nginx/sites-available/custom_response_header /etc/nginx/sites-enabled/
+
+# Remove the default symlink (optional, depends on your setup)
+sudo rm /etc/nginx/sites-enabled/default
+
+# Test Nginx configuration
+sudo nginx -t
+
+# Reload Nginx
+sudo service nginx reload

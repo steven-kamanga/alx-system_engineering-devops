@@ -16,14 +16,14 @@ if __name__ == "__main__":
         r = requests.get("https://jsonplaceholder.typicode.com/todos/",
                          params={"userId": i})
         todos = r.json()
-        l = []
+        x = []
         dd = {}
         for t in todos:
             dd = {"username": user,
                   "task": t.get("title"),
                   "completed": t.get("completed")
                   }
-            l.append(dd)
-        d.update({i: l})
+            x.append(dd)
+        d.update({i: x})
         with open("todo_all_employees.json", "w") as f:
             json.dump(d, f)

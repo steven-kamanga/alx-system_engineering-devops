@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import requests
-
 """
 This module contains a recursive function that make a query
 to the Reddit api and returns a list containing titles of hot articles for a provoded subreddit.

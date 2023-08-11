@@ -6,11 +6,13 @@ to the Reddit api and returns a list containing titles of hot articles for a pro
 If results are not found the function returns None.
 """
 
-import requests
+def recurse(subreddit, hot_list=[], after=""):
+    """
+    Queries the Reddit API and returns
+    a list containing the titles of all hot articles for a given subreddit.
 
-
-def recurse(subreddit, hot_list=[], after=None):
-    """queries Reddit API and returns list of titles of hot articles"""
+    - If not a valid subreddit, return None.
+    """
     req = requests.get(
         "https://www.reddit.com/r/{}/hot.json".format(subreddit),
         headers={"User-Agent": "Custom"},

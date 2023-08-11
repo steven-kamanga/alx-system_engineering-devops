@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """
-Queries the Reddit API and prints the titles of the
-first 10 hot posts listed for a given subreddit
+Script to call the Reddit API and print out the titles of the first 10 posts
+Listed for a provided subreddit
 """
+
 import requests
 
 

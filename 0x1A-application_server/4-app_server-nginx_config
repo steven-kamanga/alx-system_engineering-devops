@@ -1,35 +1,24 @@
-# Configures Nginx to serve the AirBnB_clone_v3 API.
+# Configures Nginx to serve Airbnb_clone_v3 api/states
 
 server {
-    # Listen on port 80
-    listen      80 default_server;
-    listen      [::]:80 default_server ipv6only=on;
+        listen 80;
+        listen [::]:80;
+        add_header X-Served-By $HOSTNAME;
 
-    # Use server IP as domain name
-    server_name 34.227.91.106;
+        # Server IP
+        server_name 34.227.91.106;
 
-    # Customize HTTP response header
-    add_header  X-Served-By 188912-web-01;
-
-    # Serve /airbnb-onepage/ route on AirBnB_clone_v3
-    location = /airbnb-onepage/ {
-        proxy_pass http://127.0.0.1:5003/airbnb-onepage/;
-    }
-
-    # Serve /number_odd_or_even/ route on AirBnB_clone_v3
-    location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
-        proxy_pass http://127.0.0.1:5004/number_odd_or_even/$1;
-    }
-
-    # Serve API on AirBnB_clone_v3
-    location /api {
-        proxy_pass http://127.0.0.1:5005/api;
-    }
-
-    # 404 error page
-    error_page 404 /404.html;
-    location /404 {
+        # Serve api route  from Airbnb_clone_v3
+        location /api {
+                proxy_pass http://127.0.0.1:5003;
+        }
+        # Error handling
+        error_page 404 /404.html;
+        location /404 {
         root /var/www/html;
         internal;
     }
 }
+
+
+

@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# This script displays the PID with the process name which name contains the word bash
-# do no use ps
-
-pgrep -l bash | cut -d ' ' -f 1,2

@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# no password authentication , holberton identity file
-
-PasswordAuthentication no
-IdentityFile ~/.ssh/id_rsa

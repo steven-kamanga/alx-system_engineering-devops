@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#displays To infinity and beyond indefinitely
+
+count=1
+while [ "$count" -gt 0 ]
+do
+	echo "To infinity and beyond"
+	sleep 2
+	((count++))
+done

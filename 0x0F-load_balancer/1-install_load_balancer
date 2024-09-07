@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# Installs and setup haproxy
+
+# Remove the outdated PPA
+sudo add-apt-repository --remove ppa:vbernat/haproxy-1.8 -y
+
+# Update package lists
+apt-get -y update
+
+# Install HAProxy
+apt-get install -y haproxy
+
+# Enable HAProxy to be started by init script
+echo "ENABLED=1" > /etc/default/haproxy
+
+# Configure HAProxy
+cat > /etc/haproxy/haproxy.cfg <<EOF
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    chroot /var/lib/haproxy
+    stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
+    stats timeout 30s
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log global
+    mode http
+    option httplog
+    option dontlognull
+    timeout connect 5000
+    timeout client  50000
+    timeout server  50000
+
+frontend http_front
+    bind *:80
+    default_backend http_back
+
+backend http_back
+    balance roundrobin
+    server 188912-web-01 54.210.50.223:80 check
+    server 188912-web-02 34.229.255.109:80 check
+EOF
+
+# Restart HAProxy service
+systemctl restart haproxy
+
+# Enable HAProxy to start on boot
+systemctl enable haproxy
